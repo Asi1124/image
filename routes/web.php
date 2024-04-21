@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\ImageController::class,'images.index'])->name('images.index');
+
+Route::get('/create',[\App\Http\Controllers\ImageController::class,'create'])->name('images.create');
+
+Route::post('/images',[\App\Http\Controllers\ImageController::class, 'save'])->name('images.save');
+
+Route::get('/', [\App\Http\Controllers\ImageController::class, 'sort'])->name('images.sort');
+
+Route::get('/download-images', [\App\Http\Controllers\ImageController::class, 'downloadImages'])->name('images.download');
+
+Route::get('/Zip', [\App\Http\Controllers\ImageController::class,'Zip'])->name('images.zip');
+
+Route::get('/json',[\App\Http\Controllers\ImageController::class, 'json'])->name('images.json');
+
+Route::get('/findjson',[\App\Http\Controllers\ImageController::class,'findJson'])->name('images.findJson');
